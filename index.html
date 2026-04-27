@@ -745,24 +745,15 @@
       }
     });
 
-    // Email signup handler
-    // TO CONNECT YOUR EMAIL PLATFORM:
-    // Option A (Mailchimp): Set form action to your Mailchimp embed URL and change method to "POST"
-    // Option B (ConvertKit/Beehiiv/etc): Replace this function with their embed script
     function handleSignup(e, successId) {
       e.preventDefault();
       const form = e.target;
-      const email = form.querySelector('input[type="email"]').value;
-
-      // ── CONNECT YOUR EMAIL PLATFORM HERE ──
-      // Example fetch call for a custom backend or Mailchimp JSONP:
-      // fetch('YOUR_ACTION_URL', { method: 'POST', body: new FormData(form) })
-
-      // For now: show success message
+      const email = encodeURIComponent(form.querySelector('input[type="email"]').value);
       form.style.display = 'none';
       document.getElementById(successId).style.display = 'block';
-
-      console.log('Signup email:', email); // remove when connected to real platform
+      setTimeout(() => {
+        window.open('https://renadas-newsletter-3bf639.beehiiv.com/subscribe?email=' + email, '_blank');
+      }, 800);
     }
   </script>
 </body>
